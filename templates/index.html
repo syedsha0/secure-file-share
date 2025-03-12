@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Secure File Share - Home{% endblock %}
+
+{% block content %}
+<div class="row align-items-center">
+    <div class="col-md-6">
+        <h1 class="display-4">Secure File Sharing Platform</h1>
+        <p class="lead">Share your files securely with end-to-end encryption.</p>
+        <hr class="my-4">
+        <p>Our platform ensures your files are encrypted and only accessible to those you choose to share with.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg me-md-2">Get Started</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg">Login</a>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="{{ url_for('static', filename='img/secure-files.svg') }}" alt="Secure File Sharing" class="img-fluid" style="max-height: 400px;">
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-lock fa-3x mb-3 text-primary"></i>
+                <h3 class="card-title">End-to-End Encryption</h3>
+                <p class="card-text">All files are encrypted using industry-standard encryption algorithms.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-share-alt fa-3x mb-3 text-primary"></i>
+                <h3 class="card-title">Secure Sharing</h3>
+                <p class="card-text">Share files with specific users and control their access permissions.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-history fa-3x mb-3 text-primary"></i>
+                <h3 class="card-title">Activity Logging</h3>
+                <p class="card-text">Track all file activities including uploads, downloads, and shares.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Share File - Secure File Share{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Share File</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <p class="mb-0">Sharing: <strong>{{ file.original_filename }}</strong></p>
+                </div>
+                <form method="POST" action="{{ url_for('share_file', file_id=file.id) }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username to share with</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="can_edit" name="can_edit">
+                        <label class="form-check-label" for="can_edit">Allow editing</label>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Share</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Currently Shared With</h5>
+            </div>
+            <div class="card-body">
+                {% if file.shares.all() %}
+                <ul class="list-group">
+                    {% for share in file.shares %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ share.shared_with.username }}
+                        <div>
+                            <span class="badge bg-{% if share.can_edit %}success{% else %}secondary{% endif %} me-2">
+                                {% if share.can_edit %}Edit{% else %}View Only{% endif %}
+                            </span>
+                            <a href="{{ url_for('revoke_access', share_id=share.id) }}" class="btn btn-sm btn-danger"
+                               onclick="return confirm('Are you sure you want to revoke access?')">
+                                <i class="fas fa-times"></i> Revoke
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-center">This file is not shared with anyone yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
