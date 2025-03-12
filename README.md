@@ -24,6 +24,6 @@ A secure file sharing platform built with Python and Flask that allows users to 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/secure-file-share.git
+git clone https://github.com/syedsha0/secure-file-share.git
 cd secure-file-share
 
